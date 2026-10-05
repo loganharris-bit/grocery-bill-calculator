@@ -1,0 +1,57 @@
+PSEUDOCODE
+Grocery Bill Calculator - Weekly and Monthly Averages
+------------------------------------------------------------------
+
+PROGRAM GroceryCalculator
+
+    // ---- Declaration Section ----
+
+    DECLARE DECIMAL couponRate
+    DECLARE DECIMAL week1, week2, week3, week4
+    DECLARE DECIMAL monthlyTotal, weeklyAverage
+    DECLARE DECIMAL monthlyWithCoupon, weeklyWithCoupon, monthlySavings
+
+    // ---- Input and Validation Section ----
+
+    DISPLAY "Enter the coupon amount as a decimal (example, .10): "
+    READ couponRate
+
+    // A valid coupon is above 0 and no more than 1.00, which is 100%.
+    IF couponRate > 1.0 OR couponRate <= 0.0 THEN
+        SET couponRate = 0.10
+        DISPLAY "Invalid coupon amount. Using default of 10%."
+    END IF
+
+    DISPLAY "Enter the grocery bill for week 1: "
+    READ week1
+    DISPLAY "Enter the grocery bill for week 2: "
+    READ week2
+    DISPLAY "Enter the grocery bill for week 3: "
+    READ week3
+    DISPLAY "Enter the grocery bill for week 4: "
+    READ week4
+
+    // ---- Calculation Section ----
+
+    SET monthlyTotal      = week1 + week2 + week3 + week4
+    SET weeklyAverage     = monthlyTotal / 4
+    SET monthlyWithCoupon = monthlyTotal * (1 - couponRate)
+    SET weeklyWithCoupon  = monthlyWithCoupon / 4
+    SET monthlySavings    = monthlyTotal - monthlyWithCoupon
+
+    // ---- Output Section ----
+
+    DISPLAY "===== Grocery Summary for a Family of Four ====="
+    DISPLAY "Coupon applied: " + (couponRate * 100) + "%"
+
+    DISPLAY "--- Without Coupon ---"
+    DISPLAY "Monthly total:  $" + monthlyTotal
+    DISPLAY "Weekly average: $" + weeklyAverage
+
+    DISPLAY "--- With Coupon ---"
+    DISPLAY "Monthly total:  $" + monthlyWithCoupon
+    DISPLAY "Weekly average: $" + weeklyWithCoupon
+
+    DISPLAY "Total saved this month: $" + monthlySavings
+
+END PROGRAM
